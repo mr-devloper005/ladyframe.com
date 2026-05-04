@@ -92,12 +92,7 @@ export function SbmDetailPage({ task, slug }: SbmDetailPageProps) {
       {/* Top Bar */}
       <div className="border-b border-border bg-card">
         <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="text-lg font-semibold text-foreground">
-                World Famous HawaiiLLC
-              </div>
-            </div>
+          <div className="flex items-center justify-end">
             <Button variant="ghost" size="sm" className="gap-2">
               <Search className="h-4 w-4" />
             </Button>

@@ -209,7 +209,7 @@ export function Navbar() {
   }
 
   if (recipe.navbar === 'folio-nav') {
-    const folioNavKeys: TaskKey[] = ['sbm', 'profile']
+    const folioNavKeys: TaskKey[] = ['sbm']
     const folioNavTasks = folioNavKeys
       .map((key) => SITE_CONFIG.tasks.find((task) => task.key === key && task.enabled))
       .filter((task): task is NonNullable<typeof task> => Boolean(task))
