@@ -504,35 +504,55 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts }: { primaryTas
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div className="space-y-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#285a48]">Who you are trusting</p>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#091413]">Profiles that answer who saved, wrote, or maintains what you click.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#285a48]">Social Bookmarking Collection</p>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#091413]">Discover curated links and resources saved by our community.</h2>
             <p className={`max-w-xl text-sm leading-8 ${tone.muted}`}>
-              Wider cards and clearer imagery put people beside the link rail—so credibility shows up in the same glance as the headline, not three clicks later.
+              Explore hand-picked bookmarks organized by categories. Find valuable resources, tools, and content shared by trusted curators in our network.
             </p>
-            <Link href="/profile" className={`inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ${tone.action}`}>
-              Browse profiles
+            <Link href="/sbm" className={`inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ${tone.action}`}>
+              Browse all bookmarks
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {people.length ? (
-              people.map((post) => (
-                <Link key={post.id} href={`/profile/${post.slug}`} className={`group overflow-hidden rounded-[1.75rem] ${tone.panel}`}>
-                  <div className="relative h-40 overflow-hidden">
-                    <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-[1.03]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#091413]/55 via-transparent to-transparent" />
-                  </div>
-                  <div className="p-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#285a48]">Public profile</p>
-                    <h3 className="mt-2 text-lg font-semibold text-[#091413]">{post.title}</h3>
-                    <p className={`mt-2 line-clamp-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Signals, highlights, and continuity across saved work.'}</p>
-                  </div>
-                </Link>
-              ))
+            {shelf.length > 0 ? (
+              shelf.slice(0, 4).map((post) => {
+                const meta = getPostMeta(post)
+                return (
+                  <Link key={post.id} href={getTaskHref(resolveTaskKey(getPostTask(post), 'sbm'), post.slug)} className={`group overflow-hidden rounded-[1.75rem] ${tone.panel} transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}>
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#285a48]">{meta.category || 'Bookmark'}</p>
+                          <h3 className="mt-2 text-lg font-semibold text-[#091413] line-clamp-2 group-hover:text-[#285a48] transition-colors">
+                            {post.title}
+                          </h3>
+                          <p className={`mt-2 line-clamp-3 text-sm leading-7 ${tone.muted}`}>
+                            {post.summary || 'Curated resource with valuable insights and information.'}
+                          </p>
+                        </div>
+                        <Bookmark className="h-5 w-5 text-[#408a71] shrink-0 mt-1" />
+                      </div>
+                      <div className="mt-4 flex items-center gap-2">
+                        <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-medium ${tone.badge}`}>
+                          <Bookmark className="h-3 w-3" />
+                          Saved
+                        </span>
+                        {meta.category && (
+                          <span className="text-[10px] font-medium text-[#285a48]/60">
+                            {meta.category}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })
             ) : (
               <div className={`rounded-[1.75rem] p-8 sm:col-span-2 ${tone.soft}`}>
-                <p className="text-sm font-semibold text-[#091413]">Profiles will appear here as soon as posts sync.</p>
-                <p className={`mt-2 text-sm ${tone.muted}`}>Routes stay live—open /profile directly to browse the full directory.</p>
+                <Bookmark className="h-8 w-8 text-[#408a71] mb-3" />
+                <p className="text-sm font-semibold text-[#091413]">Social bookmarks will appear here as soon as content is added.</p>
+                <p className={`mt-2 text-sm ${tone.muted}`}>Start building your collection of curated links and resources.</p>
               </div>
             )}
           </div>

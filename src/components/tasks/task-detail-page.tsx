@@ -249,7 +249,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
   return (
     <div className="min-h-screen bg-background">
-      <NavbarShell />
+      {!isBookmark && <NavbarShell />}
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
         <Link
@@ -317,20 +317,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 ) : null}
 
                 <div className={cn(isClassified ? "mx-auto w-full max-w-4xl" : "mt-6")}>
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                    <Badge variant="secondary" className="inline-flex items-center gap-1">
-                      <Tag className="h-3.5 w-3.5" />
-                      {category}
-                    </Badge>
-                    {location && (
-                      <span className="inline-flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {location}
-                      </span>
-                    )}
-                  </div>
-                  <h1 className="mt-4 text-3xl font-semibold text-foreground">{post.title}</h1>
-                  <RichContent html={descriptionHtml} className="mt-3 max-w-3xl" />
+                  <RichContent html={descriptionHtml} className="max-w-3xl" />
                 </div>
               </>
             ) : null}
