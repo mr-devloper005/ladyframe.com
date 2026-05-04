@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, ArrowUp, Bookmark, MessageSquare, Share2, Clock, Check } from 'lucide-react'
+import { ArrowUpRight, ArrowUp, Bookmark, MessageSquare, Share2, Check } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { Bookmark as BookmarkType } from '@/types'
 import { cn } from '@/lib/utils'
-import { formatDistanceToNow } from 'date-fns'
 import { useRouter } from 'next/navigation'
 import { loadFromStorage, saveToStorage, storageKeys } from '@/lib/local-storage'
 import { useToast } from '@/components/ui/use-toast'
@@ -107,13 +106,7 @@ export function BookmarkCard({
                 {bookmark.domain}
               </Badge>
             </div>
-            <div className="absolute bottom-3 left-3 flex items-center gap-2 text-xs text-white">
-              <Clock className="h-3 w-3" />
-              <span suppressHydrationWarning>
-                {mounted ? formatDistanceToNow(new Date(bookmark.createdAt), { addSuffix: true }) : 'Just now'}
-              </span>
-            </div>
-            <div className="absolute bottom-3 right-3 flex items-center gap-2 text-xs text-white">
+                        <div className="absolute bottom-3 right-3 flex items-center gap-2 text-xs text-white">
               <ArrowUpRight className="h-4 w-4" />
               <span>Open</span>
             </div>
