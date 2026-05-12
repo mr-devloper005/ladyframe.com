@@ -72,10 +72,6 @@ export default function CookiesPage() {
             At {SITE_CONFIG.name}, we use cookies and similar technologies to provide you with the best curation experience. 
             This policy explains what we collect, why we use it, and how you can control your preferences.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-[#285a48]">
-            <CheckCircle className="h-4 w-4" />
-            Last updated: May 4, 2026
-          </div>
         </div>
 
         {/* Cookie Principles */}

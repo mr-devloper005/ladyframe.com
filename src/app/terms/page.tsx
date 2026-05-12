@@ -96,10 +96,6 @@ export default function TermsPage() {
             These terms govern your use of {SITE_CONFIG.name}. By using our service, you agree to these guidelines 
             that help us maintain a safe, respectful, and valuable curation platform for everyone.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-[#285a48]">
-            <CheckCircle className="h-4 w-4" />
-            Last updated: May 4, 2026
-          </div>
         </div>
 
         {/* Key Principles */}
