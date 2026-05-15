@@ -19,16 +19,8 @@ export const siteContent = {
       label: 'Browse bookmarks',
       href: '/sbm',
     },
-    secondaryCta: {
-      label: 'Browse profiles',
-      href: '/profile',
-    },
     searchPlaceholder: 'Search bookmarks and profiles',
     focusLabel: 'Focus',
-    featureCardBadge: 'Live shelf',
-    featureCardTitle: 'Scan saves fast—see who curates or publishes without leaving the flow.',
-    featureCardDescription:
-      'Tight rows for links, warmer cards for people: one rhythm so you spot the signal before you scroll.',
   },
   home: {
     metadata: {
