@@ -84,10 +84,6 @@ export default function PrivacyPage() {
             At {SITE_CONFIG.name}, we believe in transparency and giving you complete control over your data. 
             This policy explains how we collect, use, and protect your information while you curate your digital world.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-[#285a48]">
-            <CheckCircle className="h-4 w-4" />
-            Last updated: May 4, 2026
-          </div>
         </div>
 
         {/* Privacy Principles */}

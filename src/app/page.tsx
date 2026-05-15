@@ -18,6 +18,35 @@ import { HOME_PAGE_OVERRIDE_ENABLED, HomePageOverride } from '@/overrides/home-p
 
 export const revalidate = 300
 
+// Function to map category names to appropriate routes
+function getCategoryHref(category: string): string {
+  const categoryLower = category.toLowerCase()
+  switch (categoryLower) {
+    case 'curated saves':
+    case 'bookmarks':
+    case 'social bookmarks':
+      return '/sbm'
+    case 'public profiles':
+    case 'profiles':
+      return '/profile'
+    case 'collections':
+      return '/sbm/collections'
+    case 'articles':
+      return '/articles'
+    case 'listings':
+      return '/listings'
+    case 'classifieds':
+      return '/classifieds'
+    case 'images':
+      return '/images'
+    case 'pdf':
+    case 'pdfs':
+      return '/pdf'
+    default:
+      return '/sbm'
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     path: '/',
@@ -458,47 +487,10 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts }: { primaryTas
                 {siteContent.hero.primaryCta.label}
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/profile" className={`inline-flex items-center gap-2 rounded-full border border-[rgba(176,228,204,0.45)] px-6 py-3 text-sm font-semibold text-[#dff9ec] transition hover:bg-white/10`}>
-                {siteContent.hero.secondaryCta.label}
-              </Link>
             </div>
           </div>
 
-          <div className={`mt-12 rounded-[2rem] border p-1 lg:mt-0 ${tone.rail}`}>
-            <div className="rounded-[1.85rem] bg-[#071815]/85 p-4 sm:p-5">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#b0e4cc]/75">Live shelf</p>
-                  {shelfIsMock ? (
-                    <span className="rounded-full border border-[#b0e4cc]/25 bg-white/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b0e4cc]/80">
-                      Preview
-                    </span>
-                  ) : null}
-                </div>
-                <Link href="/sbm" className="text-xs font-semibold text-[#b0e4cc] hover:text-white">
-                  View all
-                </Link>
-              </div>
-              <ul className="mt-2 divide-y divide-white/8">
-                {shelf.map((post) => {
-                  const meta = getPostMeta(post)
-                  return (
-                    <li key={post.id}>
-                      <Link href={getTaskHref(resolveTaskKey(getPostTask(post), 'sbm'), post.slug)} className="group flex gap-4 py-4">
-                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#408a71] shadow-[0_0_0_6px_rgba(64,138,113,0.12)]" />
-                        <div className="min-w-0 flex-1">
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#b0e4cc]/65">{meta.category || 'Resource'}</p>
-                          <p className="mt-1 line-clamp-2 text-[15px] font-semibold leading-snug text-white transition group-hover:text-[#b0e4cc]">{post.title}</p>
-                        </div>
-                        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-[#408a71] opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
-        </div>
+                  </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -519,7 +511,7 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts }: { primaryTas
               shelf.slice(0, 4).map((post) => {
                 const meta = getPostMeta(post)
                 return (
-                  <Link key={post.id} href={getTaskHref(resolveTaskKey(getPostTask(post), 'sbm'), post.slug)} className={`group overflow-hidden rounded-[1.75rem] ${tone.panel} transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}>
+                  <Link key={post.id} href={getCategoryHref(meta.category || 'sbm')} className={`group overflow-hidden rounded-[1.75rem] ${tone.panel} transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}>
                     <div className="p-6">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">

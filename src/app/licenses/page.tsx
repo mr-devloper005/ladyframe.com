@@ -108,10 +108,6 @@ export default function LicensesPage() {
             {SITE_CONFIG.name} is built on open source technologies. We believe in transparency and giving credit 
             to the amazing developers who make our platform possible.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-[#285a48]">
-            <CheckCircle className="h-4 w-4" />
-            Last updated: May 4, 2026
-          </div>
         </div>
 
         {/* License Principles */}
